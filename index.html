@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AudioScope Music Lab — sound analysis and music tools, 100% offline</title>
+    <meta name="description" content="Spectrum analyzer, spectrogram, chromatic tuner, metronome, tone generator and WAV recorder for Android. Works offline with no account and no internet permission." />
+    <meta name="theme-color" content="#02043c" />
+    <meta property="og:title" content="AudioScope Music Lab — sound analysis and music tools, 100% offline" />
+    <meta property="og:description" content="Spectrum analyzer, spectrogram, chromatic tuner, metronome, tone generator and WAV recorder for Android. Works offline with no account and no internet permission." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="feature-graphic.jpg" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="wrap site-header">
+      <a class="brand" href="index.html"><img src="icon-192.png" alt="" width="40" height="40" />AudioScope Music Lab</a>
+      <nav class="site-nav" aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="#features">Features</a><a href="privacy.html">Privacy</a><a href="es.html">Español</a></nav>
+    </header>
+    <main>
+      <div class="wrap hero">
+        <div>
+          <h1>Analyze. Tune. Compare.<br /><span>All on your phone.</span></h1>
+          <p class="lead">AudioScope Music Lab is an Android toolkit for sound analysis and music practice. It works completely offline: no account, no servers and no internet permission.</p>
+          <div class="actions">
+            <span class="badge">Coming soon to Google Play</span>
+            <a class="button ghost" href="#features">See what it does</a>
+          </div>
+          <ul class="chips" aria-label="Highlights">
+            <li>100% offline</li>
+            <li>No account</li>
+            <li>No ads or tracking</li>
+            <li>English and Spanish</li>
+            <li>Dark and light themes</li>
+          </ul>
+        </div>
+        <img class="hero-icon" src="AudioScope-Google-Play-Icon-512.png" width="512" height="512" alt="AudioScope Music Lab app icon: a tuning fork over a glowing sound wave" />
+      </div>
+
+      <section class="wrap" aria-label="Preview">
+        <img class="feature-graphic" src="feature-graphic.jpg" width="1024" height="500" alt="AudioScope on a phone showing a spectrum, a spectrogram and a tuner reading A4 at 440 Hz" />
+      </section>
+
+      <section class="wrap" id="features">
+        <h2>Twelve tools in one app</h2>
+        <p class="section-intro">From checking whether a machine sounds different today to tuning a bass or measuring how long a note rings.</p>
+        <div class="grid">
+          <article class="card"><span class="tag">Analyze</span><h3>Real-time spectrum</h3><p>FFT spectrum with dominant frequency, peak hold, cursor readout, zoom and linear or logarithmic scale.</p></article>
+          <article class="card"><span class="tag">Analyze</span><h3>Spectrogram</h3><p>Scrolling waterfall view with selectable color palettes. Pause it, read any point and save it as an image.</p></article>
+          <article class="card"><span class="tag">Analyze</span><h3>Levels and octave bands</h3><p>RMS and peak in dBFS, clipping indicator and ten octave bands from 31.5 Hz to 16 kHz.</p></article>
+          <article class="card"><span class="tag">Compare</span><h3>References</h3><p>Save any measurement as a reference: a fan when new, an empty room, a guitar with fresh strings.</p></article>
+          <article class="card"><span class="tag">Compare</span><h3>Side-by-side comparison</h3><p>Overlaid spectra, level change per band, frequencies that appeared or disappeared, and warnings when two measurements are not comparable.</p></article>
+          <article class="card"><span class="tag">Compare</span><h3>Export</h3><p>Uncompressed WAV audio, CSV and JSON data, and images of your charts, shared only where you choose.</p></article>
+          <article class="card"><span class="tag">Tune</span><h3>Chromatic tuner</h3><p>Note, octave and cents with presets for guitar, bass, ukulele, violin, viola and cello, plus your own tunings. A4 reference is adjustable.</p></article>
+          <article class="card"><span class="tag">Tune</span><h3>Tuning monitor</h3><p>Hold a note and see how well it stays in tune: average and maximum deviation and time within tolerance.</p></article>
+          <article class="card"><span class="tag">Tune</span><h3>Harmonics and sustain</h3><p>Level and tuning of the first twelve harmonics, and how long a note rings with its 20 dB and 40 dB decay times.</p></article>
+          <article class="card"><span class="tag">Practice</span><h3>Tone generator</h3><p>Sine, square and triangle waves, white and pink noise, and frequency sweeps. Always starts at low volume.</p></article>
+          <article class="card"><span class="tag">Practice</span><h3>Metronome</h3><p>Sample-accurate clicks with tap tempo, subdivisions, accents, progressive tempo increase and presets.</p></article>
+          <article class="card"><span class="tag">Practice</span><h3>Practice recorder</h3><p>Record takes, loop a section, add markers and notes, and compare two performances.</p></article>
+        </div>
+      </section>
+
+      <section class="wrap" id="privacy">
+        <div class="privacy-panel">
+          <h2>Private by design</h2>
+          <p>The app does not request internet access, so Android itself prevents it from sending anything anywhere.</p>
+          <ul>
+            <li>All audio is processed on your phone.</li>
+            <li>The only permission it asks for is the microphone, and it is used only after you press a button.</li>
+            <li>No account, no ads, no analytics.</li>
+            <li>You decide what to keep, and you can delete any recording from the app.</li>
+          </ul>
+          <a class="button ghost" href="privacy.html">Read the privacy policy</a>
+        </div>
+      </section>
+
+      <section class="wrap" id="accuracy">
+        <h2>About accuracy</h2>
+        <p class="note">Measurements made with the phone's microphone are approximate. Response, gain and processing vary by device. This app does not replace a certified sound level meter.</p>
+        <p class="section-intro" style="margin-top:18px">Levels are shown in dBFS, the digital level relative to the maximum the phone can record. An estimated dB SPL value appears only if you calibrate against a reference meter. What the app does best is compare: two measurements taken with the same phone, in the same place, with the same settings.</p>
+      </section>
+
+      <section class="wrap" id="contact">
+        <h2>Questions or feedback</h2>
+        <p class="section-intro">Write to <a href="mailto:feedback@fab-apps.com">feedback@fab-apps.com</a>.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© 2026 AudioScope Music Lab</span>
+        <span><a href="privacy.html">Privacy policy</a> · <a href="mailto:feedback@fab-apps.com">feedback@fab-apps.com</a></span>
+      </div>
+    </footer>
+  </body>
+</html>
