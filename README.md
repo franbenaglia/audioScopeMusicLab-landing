@@ -18,11 +18,25 @@ publicarse con GitHub Pages y enlazarse desde la ficha de Google Play.
 ## Publicar
 
 1. En GitHub: **Settings → Pages → Build and deployment → Deploy from a branch**, rama `main`, carpeta `/ (root)`.
-2. El sitio queda en `https://franbenaglia.github.io/audioScopeMusicLab-landing/`.
+2. El sitio se sirve en el dominio propio `https://audioscopemusiclab.fab-apps.com/` (archivo `CNAME`).
 3. URL de la política de privacidad para Google Play:
-   `https://franbenaglia.github.io/audioScopeMusicLab-landing/privacy.html`
+   `https://audioscopemusiclab.fab-apps.com/privacy.html`
 
-## Cuando la app esté publicada
+## Descarga del APK
+
+El botón «Download APK» de `index.html` y `es.html` apunta a
+
+```
+https://github.com/franbenaglia/audioScopeMusicLab-landing/releases/latest/download/AudioScopeMusicLab.apk
+```
+
+GitHub redirige esa URL al archivo `AudioScopeMusicLab.apk` de la **última release** de este repositorio, así que el
+enlace no cambia entre versiones siempre que el archivo se suba con ese nombre exacto. El APK se publica aquí, y no
+en el repositorio del código, porque aquel es privado y sus releases no serían descargables.
+
+Para publicar una versión nueva, desde el repositorio de la app: `scripts/release-apk.sh` (ver su `docs/ESTADO.md`).
+
+## Cuando la app esté en Google Play
 
 En `index.html` y `es.html`, sustituir el aviso
 
