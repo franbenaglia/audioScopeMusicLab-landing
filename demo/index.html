@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AudioScope Music Lab — Android audio analysis demo</title>
+    <meta name="description" content="Technical demonstration of AudioScope Music Lab, an offline Android app for real-time audio analysis, tuning and music practice." />
+    <!-- Indexado: «noindex, follow» por defecto. Para permitir que los buscadores la indexen, cambiar a «index, follow». -->
+    <meta name="robots" content="noindex, follow" />
+    <meta name="theme-color" content="#02043c" />
+    <link rel="icon" type="image/png" href="../favicon.png" />
+    <link rel="stylesheet" href="../styles.css" />
+    <link rel="stylesheet" href="demo.css" />
+  </head>
+  <body>
+    <header class="wrap site-header">
+      <span class="brand"><img src="../icon-192.png" alt="" width="40" height="40" />AudioScope Music Lab</span>
+      <nav class="site-nav" aria-label="Sections">
+        <a href="#capabilities">Capabilities</a><a href="#gallery">Screenshots</a><a href="#test">How to test</a><a href="#notes">Technical notes</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="wrap demo-hero">
+        <div>
+          <p class="eyebrow">Technical demonstration</p>
+          <h1>AudioScope Music Lab</h1>
+          <p class="subtitle">Android real-time audio analysis &amp; digital signal processing</p>
+          <p class="lead">An offline Android app that turns the phone microphone into a spectrum analyzer, spectrogram, chromatic tuner and practice toolkit. It demonstrates native DSP in Kotlin, pitch detection, sample-accurate audio synthesis, WAV recording and a hybrid React/Ionic interface, with no backend and no internet access.</p>
+          <div class="actions">
+            <a class="button" href="audioscope-music-lab-v1.1.0.apk" type="application/vnd.android.package-archive">Download Android APK</a>
+          </div>
+          <p class="download-meta">Version 1.1.0 · 14.5 MB · Android 7.0 or later · works offline</p>
+        </div>
+        <img class="phone-shot" src="screens/02-analyzer.jpg" width="720" height="1601" alt="AudioScope analyzer screen with level meters and a live frequency spectrum" />
+      </div>
+
+      <section class="wrap" id="capabilities">
+        <h2>Technical capabilities</h2>
+        <p class="section-intro">What the project implements and what you can observe while testing it.</p>
+        <div class="grid">
+          <article class="card"><span class="tag">Native DSP</span><h3>Real-time spectral analysis</h3><p>Kotlin captures 48 kHz audio with AudioRecord and computes RMS, peak, Hann-windowed FFT (1,024–8,192 points, 50 % overlap), octave bands and a reduced spectrum off the UI thread. Only reduced data reaches the interface.</p></article>
+          <article class="card"><span class="tag">Pitch</span><h3>Pitch detection and tuning</h3><p>YIN-based fundamental detection with octave-jump protection, median smoothing and a stability measure, used by the chromatic tuner, tuning monitor and harmonic analyzer.</p></article>
+          <article class="card"><span class="tag">Synthesis</span><h3>Sample-accurate audio output</h3><p>Tone generator (sine, square, triangle, white and pink noise, sweeps) and a metronome scheduled by counting audio samples instead of timers, with click-free ramps.</p></article>
+          <article class="card"><span class="tag">Recording</span><h3>WAV recording and file analysis</h3><p>Uncompressed 16-bit WAV written on a separate thread, header repair for interrupted recordings, waveform and spectrogram overviews, looped playback of a section.</p></article>
+          <article class="card"><span class="tag">Comparison</span><h3>Reference comparison</h3><p>Average spectra stored on a common axis, level change per octave band, new or missing peaks and warnings when microphone, sample rate or FFT size differ.</p></article>
+          <article class="card"><span class="tag">Offline</span><h3>Local-first and private</h3><p>SQLite for metadata and app-private files for audio and spectra. The app declares no internet permission; its only runtime permission is the microphone. English and Spanish interface.</p></article>
+        </div>
+      </section>
+
+      <section class="wrap" id="gallery">
+        <h2>Application screenshots</h2>
+        <p class="section-intro">Authentic screenshots captured on an Android 15 phone, only resized for the web. Select one to enlarge it.</p>
+        <div class="gallery">
+          <figure>
+            <a href="#shot-1"><img src="screens/02-analyzer-thumb.jpg" width="360" height="800" loading="lazy" alt="Analyzer screen with level meters and a live frequency spectrum" /></a>
+            <figcaption>Real-time analyzer: RMS and peak in dBFS, clipping indicator and live FFT spectrum with labeled peaks.</figcaption>
+          </figure>
+          <figure>
+            <a href="#shot-2"><img src="screens/03-spectrum-thumb.jpg" width="360" height="800" loading="lazy" alt="Spectrum chart with a cursor reading 452.1 Hz at -58.6 dB" /></a>
+            <figcaption>Spectrum cursor showing frequency and level at the touched point, with FFT size, scale, peak hold and zoom controls.</figcaption>
+          </figure>
+          <figure>
+            <a href="#shot-3"><img src="screens/04-spectrogram-thumb.jpg" width="360" height="800" loading="lazy" alt="Octave band bars above a spectrogram heat map" /></a>
+            <figcaption>Octave bands from 31.5 Hz to 16 kHz and a scrolling spectrogram with a point readout.</figcaption>
+          </figure>
+          <figure>
+            <a href="#shot-4"><img src="screens/09-compare-thumb.jpg" width="360" height="800" loading="lazy" alt="Comparison screen overlaying two spectra with the result Significant difference" /></a>
+            <figcaption>Comparison of two saved measurements: reference in blue, current in orange, with a compatibility warning.</figcaption>
+          </figure>
+          <figure>
+            <a href="#shot-5"><img src="screens/10-compare-bands-thumb.jpg" width="360" height="800" loading="lazy" alt="Table of level changes per octave band" /></a>
+            <figcaption>Level differences per octave band and the largest deviations between the two measurements.</figcaption>
+          </figure>
+          <figure>
+            <a href="#shot-6"><img src="screens/11-take-thumb.jpg" width="360" height="800" loading="lazy" alt="Recorded take showing its waveform and spectrogram" /></a>
+            <figcaption>Practice recorder: waveform and spectrogram of a recorded WAV take, with playback, section and marker controls.</figcaption>
+          </figure>
+          <figure>
+            <a href="#shot-7"><img src="screens/05-tuner-thumb.jpg" width="360" height="800" loading="lazy" alt="Tuner screen showing No note with the cents gauge and tuning history" /></a>
+            <figcaption>Chromatic tuner with cents gauge, presets, A4 reference, tolerance and tuning history. With only room noise it shows No note.</figcaption>
+          </figure>
+          <figure>
+            <a href="#shot-8"><img src="screens/06-metronome-thumb.jpg" width="360" height="800" loading="lazy" alt="Metronome screen set to 100 BPM" /></a>
+            <figcaption>Metronome with tap tempo, time signature, subdivisions, sounds, accent and progressive tempo increase.</figcaption>
+          </figure>
+          <figure>
+            <a href="#shot-9"><img src="screens/07-tone-thumb.jpg" width="360" height="800" loading="lazy" alt="Tone generator screen set to a 440 Hz sine wave" /></a>
+            <figcaption>Tone generator: waveform, volume starting low, frequency by value, slider or musical note.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="wrap" id="test">
+        <h2>How to test the application</h2>
+        <div class="grid">
+          <article class="card">
+            <h3>Install</h3>
+            <ol class="steps">
+              <li>Download the Android APK on your phone.</li>
+              <li>Open the downloaded file.</li>
+              <li>Android may ask you to allow your browser or file manager to install apps. Grant it for that app and follow Android’s installation prompts.</li>
+              <li>Launch AudioScope Music Lab and allow microphone access when a measurement starts.</li>
+            </ol>
+          </article>
+          <article class="card">
+            <h3>Requirements</h3>
+            <ul class="steps">
+              <li>Android 7.0 (API 24) or later.</li>
+              <li>A built-in microphone. A speaker or headphones for the tone generator and metronome.</li>
+              <li>No Internet connection, account or backend: everything runs on the device.</li>
+              <li>Optional: a USB or headset microphone, an instrument, and a reference sound level meter for calibration.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="wrap" id="scenario">
+        <h2>Suggested demonstration</h2>
+        <div class="privacy-panel">
+          <ol class="steps">
+            <li>Open <strong>New measurement</strong> and press <strong>Start measuring</strong>. Speak, clap or play a note and watch the level meters, the spectrum, the octave bands and the spectrogram.</li>
+            <li>With the media volume raised, choose <strong>Test signal → 1 kHz tone</strong>: the phone plays a tone and the analyzer shows a peak near 1 kHz. Tap the spectrum to read frequency and level.</li>
+            <li>Press <strong>Start session</strong>, let it run a few seconds, stop it and save it as a reference. Record a second session in a different situation and open <strong>Comparison</strong> to see the per-band differences.</li>
+            <li>Open the <strong>Tuner</strong>, play a guitar string or sing a sustained note and observe the note, the cents deviation and the tuning history.</li>
+            <li>Try the <strong>Metronome</strong> with tap tempo, and the <strong>Practice recorder</strong> to record a take, mark a section and loop it.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="wrap" id="architecture">
+        <h2>Technical architecture</h2>
+        <p class="section-intro">Real-time processing stays in native code; the web interface only receives reduced results.</p>
+        <ol class="flow" aria-label="Audio processing pipeline">
+          <li><strong>Input</strong>Microphone → Android AudioRecord (48 kHz)</li>
+          <li><strong>Kotlin</strong>Capture thread → lock-free ring buffer</li>
+          <li><strong>DSP</strong>Levels, FFT, bands, YIN pitch, harmonics, sustain</li>
+          <li><strong>Bridge</strong>Capacitor plugin events (rate-limited, reduced data)</li>
+          <li><strong>UI</strong>React 19 + Ionic 9 + TypeScript, Canvas charts</li>
+          <li><strong>Storage</strong>SQLite metadata + app-private WAV and JSON files</li>
+        </ol>
+        <p>Audio output (tone generator, metronome, playback) uses Android AudioTrack in a separate native thread. The DSP code is a pure Kotlin module tested on the JVM with synthetic signals (113 tests); the TypeScript domain logic has its own unit tests (108). The app is packaged with Capacitor 8.</p>
+      </section>
+
+      <section class="wrap" id="notes">
+        <h2>Technical notes</h2>
+        <table class="specs">
+          <tbody>
+            <tr><th scope="row">Application version</th><td>1.1.0 (version code 2)</td></tr>
+            <tr><th scope="row">Application ID</th><td><code>com.audioscope.musiclab</code></td></tr>
+            <tr><th scope="row">Minimum Android version</th><td>Android 7.0 (API 24); targets API 36</td></tr>
+            <tr><th scope="row">Architectures</th><td>Single APK for arm64-v8a, armeabi-v7a, x86 and x86_64</td></tr>
+            <tr><th scope="row">Internet requirement</th><td>None. The app does not request the internet permission.</td></tr>
+            <tr><th scope="row">Additional hardware</th><td>None required beyond the phone’s microphone and speaker</td></tr>
+            <tr><th scope="row">Permissions</th><td>Microphone (<code>RECORD_AUDIO</code>) only</td></tr>
+            <tr><th scope="row">APK file size</th><td>14,534,877 bytes (14.5 MB)</td></tr>
+            <tr><th scope="row">APK SHA-256</th><td><code>eed0ab1ce009b8d4ce63ba439022628859b7e4ef2b9a993d81556c83a668b68c</code></td></tr>
+            <tr><th scope="row">Signature</th><td>APK Signature Scheme v2, certificate SHA-256 <code>48:2D:47:C3:8B:41:41:E2:50:3B:0D:91:CC:52:1D:19:BC:E1:48:46:9C:29:F2:D0:EA:C5:A7:0C:EF:0C:8B:E8</code></td></tr>
+            <tr><th scope="row">Interface languages</th><td>English and Spanish (follows the phone’s language), dark and light themes</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="wrap" id="limitations">
+        <h2>Demonstration limitations</h2>
+        <p class="note">Measurements made with the phone’s microphone are approximate. Response, gain and processing vary by device. This app does not replace a certified sound level meter.</p>
+        <ul class="steps" style="margin-top:16px">
+          <li>Levels are shown in dBFS (digital full scale). An estimated dB SPL value appears only after calibrating against a reference meter.</li>
+          <li>The tuner is monophonic: it follows one note at a time. Very low notes take longer to settle.</li>
+          <li>Phone microphones capture little below about 60–80 Hz and are irregular above about 10–12 kHz.</li>
+          <li>Some phones apply automatic gain control that cannot be disabled; the analyzer indicates whether unprocessed audio is available.</li>
+        </ul>
+        <p class="section-intro" style="margin-top:16px">The application is provided for technical evaluation. Install it only if you are comfortable installing apps from outside an app store, and review the permissions Android shows during installation.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>AudioScope Music Lab · technical demonstration</span>
+        <span>This page is an independent technical demonstration and is not affiliated with Fiverr.</span>
+      </div>
+    </footer>
+
+    <div class="lightbox" id="shot-1" role="dialog" aria-label="Analyzer screen with level meters and a live frequency spectrum">
+      <a class="close" href="#gallery">Close ✕</a>
+      <img src="screens/02-analyzer.jpg" width="720" height="1601" loading="lazy" alt="Analyzer screen with level meters and a live frequency spectrum" />
+      <p>Real-time analyzer: RMS and peak in dBFS, clipping indicator and live FFT spectrum with labeled peaks.</p>
+    </div>
+    <div class="lightbox" id="shot-2" role="dialog" aria-label="Spectrum chart with a cursor reading 452.1 Hz at -58.6 dB">
+      <a class="close" href="#gallery">Close ✕</a>
+      <img src="screens/03-spectrum.jpg" width="720" height="1601" loading="lazy" alt="Spectrum chart with a cursor reading 452.1 Hz at -58.6 dB" />
+      <p>Spectrum cursor showing frequency and level at the touched point, with FFT size, scale, peak hold and zoom controls.</p>
+    </div>
+    <div class="lightbox" id="shot-3" role="dialog" aria-label="Octave band bars above a spectrogram heat map">
+      <a class="close" href="#gallery">Close ✕</a>
+      <img src="screens/04-spectrogram.jpg" width="720" height="1601" loading="lazy" alt="Octave band bars above a spectrogram heat map" />
+      <p>Octave bands from 31.5 Hz to 16 kHz and a scrolling spectrogram with a point readout.</p>
+    </div>
+    <div class="lightbox" id="shot-4" role="dialog" aria-label="Comparison screen overlaying two spectra with the result Significant difference">
+      <a class="close" href="#gallery">Close ✕</a>
+      <img src="screens/09-compare.jpg" width="720" height="1601" loading="lazy" alt="Comparison screen overlaying two spectra with the result Significant difference" />
+      <p>Comparison of two saved measurements: reference in blue, current in orange, with a compatibility warning.</p>
+    </div>
+    <div class="lightbox" id="shot-5" role="dialog" aria-label="Table of level changes per octave band">
+      <a class="close" href="#gallery">Close ✕</a>
+      <img src="screens/10-compare-bands.jpg" width="720" height="1601" loading="lazy" alt="Table of level changes per octave band" />
+      <p>Level differences per octave band and the largest deviations between the two measurements.</p>
+    </div>
+    <div class="lightbox" id="shot-6" role="dialog" aria-label="Recorded take showing its waveform and spectrogram">
+      <a class="close" href="#gallery">Close ✕</a>
+      <img src="screens/11-take.jpg" width="720" height="1601" loading="lazy" alt="Recorded take showing its waveform and spectrogram" />
+      <p>Practice recorder: waveform and spectrogram of a recorded WAV take, with playback, section and marker controls.</p>
+    </div>
+    <div class="lightbox" id="shot-7" role="dialog" aria-label="Tuner screen showing No note with the cents gauge and tuning history">
+      <a class="close" href="#gallery">Close ✕</a>
+      <img src="screens/05-tuner.jpg" width="720" height="1601" loading="lazy" alt="Tuner screen showing No note with the cents gauge and tuning history" />
+      <p>Chromatic tuner with cents gauge, presets, A4 reference, tolerance and tuning history. With only room noise it shows No note.</p>
+    </div>
+    <div class="lightbox" id="shot-8" role="dialog" aria-label="Metronome screen set to 100 BPM">
+      <a class="close" href="#gallery">Close ✕</a>
+      <img src="screens/06-metronome.jpg" width="720" height="1601" loading="lazy" alt="Metronome screen set to 100 BPM" />
+      <p>Metronome with tap tempo, time signature, subdivisions, sounds, accent and progressive tempo increase.</p>
+    </div>
+    <div class="lightbox" id="shot-9" role="dialog" aria-label="Tone generator screen set to a 440 Hz sine wave">
+      <a class="close" href="#gallery">Close ✕</a>
+      <img src="screens/07-tone.jpg" width="720" height="1601" loading="lazy" alt="Tone generator screen set to a 440 Hz sine wave" />
+      <p>Tone generator: waveform, volume starting low, frequency by value, slider or musical note.</p>
+    </div>
+  </body>
+</html>

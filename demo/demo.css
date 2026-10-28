@@ -1,0 +1,211 @@
+/* Estilos propios de la página de demostración; la base es ../styles.css (identidad de la landing). */
+.demo-hero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 40px;
+  padding: 28px 0 40px;
+}
+
+.demo-hero .eyebrow {
+  margin: 0 0 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+
+.demo-hero h1 {
+  margin: 0 0 6px;
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.demo-hero .subtitle {
+  margin: 0 0 18px;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.phone-shot {
+  justify-self: center;
+  width: min(300px, 72vw);
+  height: auto;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 70px rgba(52, 213, 255, 0.18);
+}
+
+.download-meta {
+  margin: 12px 0 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.button.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.gallery figure {
+  margin: 0;
+}
+
+.gallery a {
+  display: block;
+  border-radius: 12px;
+}
+
+.gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.gallery figcaption {
+  margin-top: 8px;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+/* Lightbox sin JavaScript: cada imagen ampliada es un destino #shot-N. */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 64px 16px 16px;
+  background: rgba(1, 2, 31, 0.96);
+}
+
+.lightbox:target {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: min(100%, 520px);
+  max-height: calc(100vh - 150px);
+  width: auto;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+
+.lightbox p {
+  margin: 0;
+  max-width: 520px;
+  text-align: center;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.lightbox .close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  text-decoration: none;
+  background: var(--bg);
+}
+
+.steps {
+  margin: 0;
+  padding-left: 1.3em;
+}
+
+.steps li {
+  margin: 8px 0;
+}
+
+.flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 8px;
+  margin: 8px 0 18px;
+  padding: 0;
+  list-style: none;
+}
+
+.flow li {
+  flex: 1 1 150px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+.flow li strong {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--cyan);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.flow li + li::before {
+  content: '→';
+  margin-right: 6px;
+  color: var(--muted);
+}
+
+.specs {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.specs th,
+.specs td {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.specs th {
+  width: 34%;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.specs code {
+  font-family: ui-monospace, 'Roboto Mono', monospace;
+  font-size: 0.85em;
+  word-break: break-all;
+}
+
+@media (max-width: 760px) {
+  .demo-hero {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .phone-shot {
+    width: min(240px, 64vw);
+  }
+
+  .specs th {
+    width: 40%;
+  }
+}
